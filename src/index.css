@@ -1,13 +1,33 @@
-body {
+@import url('https://fonts.googleapis.com/css2?family=Moon+Dance&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+*, ::after, ::before{
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  /* font-family: sohne-var, "Helvetica Neue", Arial, sans-serif; */
+  color: #050a30;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+input, textarea, select { font-family: 'Poppins', sans-serif; }
+
+body{
+  background-color: #bdfff6;
+  overflow-x: hidden; /* Hide horizontal scrollbar */
+  font-family: 'Poppins', sans-serif;
 }
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+ 
+::-webkit-scrollbar-track {
+  background-color: #f0e9e9;
+  border-left: 1px solid #e9e5e5;
+}
+ 
+::-webkit-scrollbar-thumb {
+  background-color: #335ddc;
+  border-radius: 100px;
+}
+
