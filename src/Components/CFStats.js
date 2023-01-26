@@ -76,9 +76,9 @@ const CFStats = () => {
         if (problemSet == undefined || contestList == undefined) {
             // console.log("Waiting for problem set and contestList to get filled, Listening from searchDiv2A function...");
         } else {
-            console.log(
-                "Problem set and contestList recieved successfully, Listening from searchDiv2A function!"
-            );
+            // console.log(
+            //     "Problem set and contestList recieved successfully, Listening from searchDiv2A function!"
+            // );
 
             let len = problemSet.result.problems.length;
             let lenOfContestIds = LastTwentyDivTwoIds.length;
@@ -163,9 +163,9 @@ const CFStats = () => {
 
             countByLevelArray.push(countByLevelC);
 
-            console.log("countByLevelArray[0] : ", countByLevelArray[0]);
-            console.log("countByLevelArray[1] : ", countByLevelArray[1]);
-            console.log("countByLevelArray[2] : ", countByLevelArray[2]);
+            // console.log("countByLevelArray[0] : ", countByLevelArray[0]);
+            // console.log("countByLevelArray[1] : ", countByLevelArray[1]);
+            // console.log("countByLevelArray[2] : ", countByLevelArray[2]);
 
             // --- fill use states
 
@@ -252,10 +252,10 @@ const Container = styled.div`
   border-radius: 10px;
   border: 1.5px solid black;
   background-color: #ffffffd4;
-  box-shadow: 1px 1px 10px 0 rgb(0 0 0 / 5%);
   -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(3px);
   padding: 20px;
+  filter: drop-shadow(0 25px 25px rgba(0,0,0,.15));
 
   .feature-title {
     font-size: 1.05rem;

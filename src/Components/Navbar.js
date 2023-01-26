@@ -12,7 +12,6 @@ const Navbar = () => {
             <div className="username">Atanu Nayak</div>
             <div className="auth">Logout</div>
         </div>
-        
     </Container>
   )
 }
@@ -20,12 +19,16 @@ const Navbar = () => {
 export default Navbar
 
 const Container = styled.div`
+    position: fixed;
     width: 100vw;
     height: 70px;
     padding: 0 70px;
     /* border-bottom: 1px solid black; */
-    background-color: #d2fff9;
+    background-color: #f2fcfb;
+    border-bottom: 1px solid #cccccc;
+    z-index: 2;
     box-shadow: 1px 1px 10px 0 rgb(0 0 0 / 5%);
+    top: 0;
 
     display: flex;
     justify-content: space-between;

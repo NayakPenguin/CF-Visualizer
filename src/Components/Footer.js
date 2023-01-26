@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <Container>
         <div className="main-text">
-            Website designed and Developed by <a href="https://www.linkedin.com/in/atanu-nayak-profile/">Atanu Nayak</a>, made with ❤️
+            Website designed and developed by <a href="https://www.linkedin.com/in/atanu-nayak-profile/">Atanu Nayak</a>, made with ❤️
             <br /><a href="https://github.com/Nayaker/CF-Visualizer" target={"_blank"}>Visit Github Repository</a>
         </div>
     </Container>
