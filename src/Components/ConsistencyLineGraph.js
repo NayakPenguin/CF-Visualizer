@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import { Bar } from "react-chartjs-2";
+import { Line } from "react-chartjs-2";
 
 const ProblemRating = ({ userData, infoData, userHandle }) => {
     const [chartData, setChartData] = useState();
-    
+
     const options = {
         legend: {
             position: "right"
@@ -13,40 +13,66 @@ const ProblemRating = ({ userData, infoData, userHandle }) => {
     };
 
     const filterData = () => {
-        const len = userData.length;
-        let count = {};
-        const uniqueQuestions = {};
-        for (let i = 0; i<len; i++) {
-            if(userData[i].verdict == "OK" && !uniqueQuestions[userData[i].problem.name + userData[i].problem.contestId + userData[i].problem.index]){
-                uniqueQuestions[userData[i].problem.name + userData[i].problem.contestId + userData[i].problem.index] = 1;
-                if(count[userData[i].problem.rating] == undefined){
-                    if(userData[i].problem.rating !== undefined)
-                        count[userData[i].problem.rating] = 1;
-                } else count[userData[i].problem.rating]++;
+        var count = {};
+        userData.forEach(function (result) {
+            if (result.verdict === "OK") {
+                var date = new Date(result.creationTimeSeconds * 1000);
+                var year = date.getUTCFullYear();
+                var month = date.getUTCMonth();
+                if (month < 9) {
+                    month = '0' + (month + 1);
+                } else {
+                    month = month + 1;
+                }
+                var day = date.getUTCDate();
+                if (day < 10) {
+                    day = '0' + day;
+                }
+                if(count[year + '' + month + '' + day]){
+                    count[year + '' + month + '' + day]++;
+                }
+                else count[year + '' + month + '' + day] = 1;
+                console.log(year + '' + month + '' + day);
             }
-        }
-        // console.log(Object.keys(count));
-        // console.log(Object.values(count));
+        });
+        
+        const keys = Object.keys(count);
+        const values = Object.values(count);
+        let avgCount = [];
+        let avgKeys = [];
+        let prev = keys.length - 1;
+        for (let i = keys.length - 1; i > 0; i--) {
+            if (keys[prev] - keys[i-1] <= 10) {
+                // console.log(count[keys[i]], count[keys[i+1]]);
+                // count[keys[i]] += count[keys[i + 1]];
+                // delete count[keys[i - 1]];
+                avgCount[avgCount.length - 1] += values[i-1];
+            }
+            else {
+                prev = i-1;
+                avgCount.push(values[i]);
+                let new_date = keys[i].slice(6,8) + " - " + keys[i].slice(4,6) + " - " + keys[i].slice(0,4);
+                avgKeys.push(new_date);
+            }
+            // console.log(count[keys[i]], count[keys[i+1]]);
+          }
+
         let data = {};
-        data.labels = Object.keys(count);
+        data.labels = avgKeys.reverse();
         data.datasets = [
             {
-                data: Object.values(count),
-                label: "Problem Rating",
+                data: avgCount.reverse(),
+                label: "Problem Solved on Average",
                 backgroundColor: "rgba(255,99,132,0.2)",
                 borderColor: "rgba(255,99,132,1)",
                 borderWidth: 1,
                 hoverBackgroundColor: "rgba(255,99,132,0.4)",
-                hoverBorderColor: "rgba(255,99,132,1)"
+                hoverBorderColor: "rgba(255,99,132,1)",
+                tension: 0.5
             }
         ];
         return data;
     };
-
-
-    // console.log(filterData().datasets);
-
-
 
 
     return (
@@ -54,12 +80,12 @@ const ProblemRating = ({ userData, infoData, userHandle }) => {
             <div className="visualiser-conatiner">
                 <div className="canvas-container">
                     <div className="top-label">
-                        <div className="label-item selected">Solved Problem Ratings</div>
+                        <div className="label-item selected">Problem Submissions</div>
                     </div>
                     {
                         true ? (
                             <div className="canvas-graph">
-                                <Bar data={filterData()} options={options} />
+                                <Line data={filterData()} options={options} />
                             </div>
                         ) : (
                             <></>

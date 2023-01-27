@@ -4,6 +4,8 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 import Axios from "axios";
 import TagsDonutChart from "./Charts/TagsDonutChart";
 import ProblemRating from "./ProblemRating";
+import ProblemLevel from "./ProblemLevel";
+import ConsistencyLineGraph from "./ConsistencyLineGraph";
 
 const AccountVisual = ({ handle }) => {
   const [data, setData] = useState(null);
@@ -48,6 +50,8 @@ const AccountVisual = ({ handle }) => {
               <div>
                   <TagsDonutChart userData={data} infoData={infoData} userHandle={handle}/>
                   <ProblemRating userData={data} infoData={infoData} userHandle={handle}/>
+                  <ProblemLevel userData={data} infoData={infoData} userHandle={handle}/>
+                  <ConsistencyLineGraph userData={data} infoData={infoData} userHandle={handle}/>
               </div> : 
               <></>
             }

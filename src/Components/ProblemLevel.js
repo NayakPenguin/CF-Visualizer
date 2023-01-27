@@ -1,9 +1,10 @@
+
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import { Bar } from "react-chartjs-2";
 
-const ProblemRating = ({ userData, infoData, userHandle }) => {
+const ProblemLevel = ({ userData, infoData, userHandle }) => {
     const [chartData, setChartData] = useState();
     
     const options = {
@@ -19,20 +20,23 @@ const ProblemRating = ({ userData, infoData, userHandle }) => {
         for (let i = 0; i<len; i++) {
             if(userData[i].verdict == "OK" && !uniqueQuestions[userData[i].problem.name + userData[i].problem.contestId + userData[i].problem.index]){
                 uniqueQuestions[userData[i].problem.name + userData[i].problem.contestId + userData[i].problem.index] = 1;
-                if(count[userData[i].problem.rating] == undefined){
-                    if(userData[i].problem.rating !== undefined)
-                        count[userData[i].problem.rating] = 1;
-                } else count[userData[i].problem.rating]++;
+                if(count[userData[i].problem.index] == undefined){
+                    if(userData[i].problem.index !== undefined)
+                        count[userData[i].problem.index] = 1;
+                } else count[userData[i].problem.index]++;
             }
         }
         // console.log(Object.keys(count));
         // console.log(Object.values(count));
+        let sorted = Object.entries(count).sort((a, b) => a[0].localeCompare(b[0]));
+        let result = Object.fromEntries(sorted);
+        // console.log(result);  
         let data = {};
-        data.labels = Object.keys(count);
+        data.labels = Object.keys(result);
         data.datasets = [
             {
-                data: Object.values(count),
-                label: "Problem Rating",
+                data: Object.values(result),
+                label: "Problem Levels",
                 backgroundColor: "rgba(255,99,132,0.2)",
                 borderColor: "rgba(255,99,132,1)",
                 borderWidth: 1,
@@ -54,7 +58,7 @@ const ProblemRating = ({ userData, infoData, userHandle }) => {
             <div className="visualiser-conatiner">
                 <div className="canvas-container">
                     <div className="top-label">
-                        <div className="label-item selected">Solved Problem Ratings</div>
+                        <div className="label-item selected">Solved Problem Level</div>
                     </div>
                     {
                         true ? (
@@ -72,7 +76,7 @@ const ProblemRating = ({ userData, infoData, userHandle }) => {
     )
 }
 
-export default ProblemRating
+export default ProblemLevel
 
 const VisualiserConatiner = styled.div`
 	margin: 10px 0 0 0;
