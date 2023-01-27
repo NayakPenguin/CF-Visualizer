@@ -303,6 +303,9 @@ const Container = styled.div`
           justify-content: center;
           position: relative;
           border-radius: 5px;
+          border: 1px solid #d1d5db;
+            background-color: rgba(255, 255, 255, 0.83);
+            box-shadow: rgb(0 0 0 / 5%) 1px 1px 10px 0px;
 
           b {
             font-weight: 500;
@@ -341,6 +344,9 @@ const Container = styled.div`
           text-align: center;
           border-radius: 4px;
           border: 1px solid #050a30;
+          /* border: 1px solid #d1d5db; */
+            background-color: rgba(255, 255, 255, 0.83);
+            box-shadow: rgb(0 0 0 / 5%) 1px 1px 10px 0px;
         }
       }
     }
