@@ -34,7 +34,7 @@ const L15NetChange = ({ infoData }) => {
 
   // console.log("Count : ", count);
 
-  console.log(infoData);
+  // console.log(infoData);
   return (
     <div className="stat-item">
       <div className="item-left">Net Rating Change :</div>

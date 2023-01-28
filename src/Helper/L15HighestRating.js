@@ -29,7 +29,7 @@ const L15HighestRating = ({ userData }) => {
             }
             var submissionDate = parseInt(year)*10000 + parseInt(month)*100 + parseInt(day);
             if (currentDate - submissionDate <= 15) {
-                console.log(result.problem.rating);
+                // console.log(result.problem.rating);
                 if(result.problem.rating > maxRating){
                     setMaxRating(result.problem.rating);
                 }
@@ -39,7 +39,7 @@ const L15HighestRating = ({ userData }) => {
 
     // console.log("Count : ", count);
 
-    console.log(userData);
+    // console.log(userData);
     return (
         <div className="stat-item">
             <div className="item-left">Highest Problem Rating : </div>

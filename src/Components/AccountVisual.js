@@ -7,6 +7,7 @@ import ProblemRating from "./ProblemRating";
 import ProblemLevel from "./ProblemLevel";
 import ConsistencyLineGraph from "./ConsistencyLineGraph";
 import AccStats from "./AccStats";
+import LastYrProblemRating from "./LastYrProblemRating";
 
 const AccountVisual = ({ handle }) => {
   const [data, setData] = useState(null);
@@ -52,6 +53,7 @@ const AccountVisual = ({ handle }) => {
                   <TagsDonutChart userData={data} infoData={infoData} userHandle={handle}/>
                   <ProblemRating userData={data} infoData={infoData} userHandle={handle}/>
                   <ProblemLevel userData={data} infoData={infoData} userHandle={handle}/>
+                  <LastYrProblemRating userData={data} infoData={infoData} userHandle={handle}/>
                   <ConsistencyLineGraph userData={data} infoData={infoData} userHandle={handle}/>
                   <AccStats userData={data} infoData={infoData} userHandle={handle}/>
               </div> : 

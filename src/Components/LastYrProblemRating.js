@@ -1,11 +1,13 @@
+
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import { Line } from "react-chartjs-2";
 
-const ProblemRating = ({ userData, infoData, userHandle }) => {
+const LastYrProblemRating = ({ userData, infoData, userHandle }) => {
     const [chartData, setChartData] = useState(null);
     const [lastLabels, setLastLabels] = useState();
+    const [perXDays, setPerXDays] = useState(90);
 
     const options = {
         legend: {
@@ -14,7 +16,7 @@ const ProblemRating = ({ userData, infoData, userHandle }) => {
     };
 
     const filterData = () => {
-        var count = {};
+        var count = {}, sum = {};
         var date = new Date();
         var year = date.getFullYear();
         var month = (1 + date.getMonth()).toString().padStart(2, '0');
@@ -40,35 +42,51 @@ const ProblemRating = ({ userData, infoData, userHandle }) => {
                 // console.log(currentDate - submissionDate);
 
                 const diff = currentDate - submissionDate;
-                if(diff < 355){
-                    if(count[diff]){
-                        count[diff]++;
+                if(result.problem.rating != undefined){
+                // if(diff <= 355 && result.problem.rating != undefined){
+                    if(sum[diff]){
+                        sum[diff] += result.problem.rating;
                     }
-                    else count[diff] = 1;
+                    else {sum[diff] = result.problem.rating;}
+
+                    const diffPer15Days = parseInt(diff / perXDays);
+                    if(count[diffPer15Days]){
+                        count[diffPer15Days] += 1;
+                    }
+                    else {count[diffPer15Days] = 1;}
                 }
                 // console.log(year + '' + month + '' + day);
             }
         });
         
-        const keys = Object.keys(count);
-        const values = Object.values(count);
+        const keys = Object.keys(sum);
+        const values = Object.values(sum);
         var totalQuestions = {};
         for (let i = 0; i < keys.length; i++){
-            let pos = parseInt(keys[i] / 15);
+            let pos = parseInt(keys[i] / perXDays);
             if(totalQuestions[pos]){
                 totalQuestions[pos] += values[i];
             }
-            else totalQuestions[pos] = values[i];
+            else {totalQuestions[pos] = values[i];}
             
             // console.log(pos, totalQuestions[pos]);
         }
 
+        const SolvedDayCount = Object.values(count);
         const LastKeys = Object.keys(totalQuestions);
         const LastValues = Object.values(totalQuestions);
+
+        for (let i = 0; i < SolvedDayCount.length; i++){
+            console.log(SolvedDayCount[i]);
+        }
+
         let LastXDays = [];
         for (let i = 0; i < LastKeys.length; i++){
-            // console.log((parseInt(LastKeys[i]) + 1) * 15, "Days ago : ", LastValues[i]);
-            LastXDays.push((parseInt(LastKeys[i]) + 1) * 15 + " Days ago");
+            console.log(LastKeys[i], LastValues[i]);
+            LastValues[i] = (LastValues[i] / SolvedDayCount[i]).toFixed(0);
+            console.log("Average : ", LastValues[i]);
+            // // console.log((parseInt(LastKeys[i]) + 1) * 15, "Days ago : ", LastValues[i]);
+            LastXDays.push((parseInt(LastKeys[i]) + 1) * perXDays + " Days ago");
         }
         setLastLabels(LastXDays);
 
@@ -77,7 +95,7 @@ const ProblemRating = ({ userData, infoData, userHandle }) => {
         data.datasets = [
             {
                 data: LastValues.reverse(),
-                label: "Problem Solved on Average",
+                label: "Problem Rating on Average",
                 backgroundColor: "rgba(255,99,132,0.2)",
                 borderColor: "rgba(255,99,132,1)",
                 borderWidth: 1,
@@ -94,14 +112,17 @@ const ProblemRating = ({ userData, infoData, userHandle }) => {
     
     useEffect(() => {
         filterData();
-    }, [])
+    }, [perXDays])
+
+    console.log(userData);
 
     return (
         <VisualiserConatiner>
             <div className="visualiser-conatiner">
                 <div className="canvas-container">
                     <div className="top-label">
-                        <div className="label-item selected">Problems Solved last year per 15 days</div>
+                        <div className={perXDays == 90 ? "label-item selected" : "label-item"} onClick={() => setPerXDays(90)}>Average Problem Rating per 90 Days</div>
+                        <div className={perXDays == 15 ? "label-item selected" : "label-item"} onClick={() => setPerXDays(15)}>Show per 15 Days</div>
                     </div>
                     {
                         true ? (
@@ -121,7 +142,7 @@ const ProblemRating = ({ userData, infoData, userHandle }) => {
     )
 }
 
-export default ProblemRating
+export default LastYrProblemRating
 
 const VisualiserConatiner = styled.div`
 	margin: 10px 0 0 0;
@@ -213,12 +234,17 @@ const VisualiserConatiner = styled.div`
 			.label-item{
 				padding: 5px 10px;
 				font-size: 0.7rem;
-                background-color: #050a30;
-                color: white;
+                background-color: #fff;
 				border-radius: 5px;
 				margin-right: 7.5px;
+                border: 1px solid #050a30; 
 				cursor: pointer;
 			}
+            
+            .selected{
+                color: white;
+                background-color: #050a30;
+            }
 		}
     }
 

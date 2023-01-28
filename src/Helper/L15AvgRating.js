@@ -31,13 +31,16 @@ const L15AvgRating = ({ userData }) => {
                 }
                 var submissionDate = parseInt(year)*10000 + parseInt(month)*100 + parseInt(day);
                 if (currentDate - submissionDate <= 15 && result.problem.rating != undefined) {
-                    console.log(result.problem.rating);
+                    // console.log(result.problem.rating);
                     sum += result.problem.rating;
                     len++;
                 }
             }
             let avg = sum / len;
-            setAvgRating(avg);
+            if(len == 0){
+                setAvgRating(0);
+            }
+            else setAvgRating(avg);
         });
 
     }, [])
@@ -45,7 +48,7 @@ const L15AvgRating = ({ userData }) => {
 
     // console.log("Count : ", count);
 
-    console.log(userData);
+    // console.log(userData);
     return (
         <div className="stat-item">
             <div className="item-left">Average Problem Rating : </div>
