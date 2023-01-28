@@ -6,6 +6,7 @@ import TagsDonutChart from "./Charts/TagsDonutChart";
 import ProblemRating from "./ProblemRating";
 import ProblemLevel from "./ProblemLevel";
 import ConsistencyLineGraph from "./ConsistencyLineGraph";
+import AccStats from "./AccStats";
 
 const AccountVisual = ({ handle }) => {
   const [data, setData] = useState(null);
@@ -15,7 +16,7 @@ const AccountVisual = ({ handle }) => {
     const url = "https://codeforces.com/api/user.status?handle="+handle;
         Axios.get(url)
             .then(res=>{
-                console.log(res.data.result)
+                // console.log(res.data.result)
                 setData(res.data.result);
 
             })
@@ -23,11 +24,11 @@ const AccountVisual = ({ handle }) => {
                 this.setState({
                     error:true
                 })
-                console.log(this.state.error)
+                // console.log(this.state.error)
             });
         Axios.get("https://codeforces.com/api/user.rating?handle="+handle)
             .then(res=>{
-              console.log(res.data.result)
+              // console.log(res.data.result)
               setInfoData(res.data.result)
             })
   }
@@ -52,6 +53,7 @@ const AccountVisual = ({ handle }) => {
                   <ProblemRating userData={data} infoData={infoData} userHandle={handle}/>
                   <ProblemLevel userData={data} infoData={infoData} userHandle={handle}/>
                   <ConsistencyLineGraph userData={data} infoData={infoData} userHandle={handle}/>
+                  <AccStats userData={data} infoData={infoData} userHandle={handle}/>
               </div> : 
               <></>
             }

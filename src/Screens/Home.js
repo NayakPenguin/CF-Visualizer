@@ -7,7 +7,7 @@ import AccountVisual from '../Components/AccountVisual';
 import SendIcon from '@material-ui/icons/Send';
 
 const Home = () => {
-    const [handle, setHandle] = useState("");
+    const [handle, setHandle] = useState("NayakPenguin");
     const [cFHandle, setCFHandle] = useState("");
     const [viewStats, setViewStats] = useState(false);
 
@@ -151,7 +151,7 @@ const FeatureContainer = styled.div`
                 transform: translateY(0);
             }
             50% {
-                transform: translateY(-2px);
+                transform: translateY(-2.5px);
             }
             100% {
                 transform: translateY(0);

@@ -32,7 +32,7 @@ const ProblemRating = ({ userData, infoData, userHandle }) => {
                     count[year + '' + month + '' + day]++;
                 }
                 else count[year + '' + month + '' + day] = 1;
-                console.log(year + '' + month + '' + day);
+                // console.log(year + '' + month + '' + day);
             }
         });
         
