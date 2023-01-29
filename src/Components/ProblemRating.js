@@ -173,10 +173,16 @@ const VisualiserConatiner = styled.div`
 		}
     }
 
-    
-    
     p{
         font-size: 0.8rem;
         letter-spacing: 0.07rem;
+    }
+    
+    @media only screen and (max-width: 1180px){
+        .visualiser-conatiner{
+            .canvas-container{
+                padding: 50px 5px 5px 5px;
+            }
+        }
     }
 `;

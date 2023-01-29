@@ -77,14 +77,14 @@ const LastYrProblemRating = ({ userData, infoData, userHandle }) => {
         const LastValues = Object.values(totalQuestions);
 
         for (let i = 0; i < SolvedDayCount.length; i++){
-            console.log(SolvedDayCount[i]);
+            // console.log(SolvedDayCount[i]);
         }
 
         let LastXDays = [];
         for (let i = 0; i < LastKeys.length; i++){
-            console.log(LastKeys[i], LastValues[i]);
+            // console.log(LastKeys[i], LastValues[i]);
             LastValues[i] = (LastValues[i] / SolvedDayCount[i]).toFixed(0);
-            console.log("Average : ", LastValues[i]);
+            // console.log("Average : ", LastValues[i]);
             // // console.log((parseInt(LastKeys[i]) + 1) * 15, "Days ago : ", LastValues[i]);
             LastXDays.push((parseInt(LastKeys[i]) + 1) * perXDays + " Days ago");
         }
@@ -114,7 +114,7 @@ const LastYrProblemRating = ({ userData, infoData, userHandle }) => {
         filterData();
     }, [perXDays, userData])
 
-    console.log(userData);
+    // console.log(userData);
 
     return (
         <VisualiserConatiner>
@@ -247,11 +247,17 @@ const VisualiserConatiner = styled.div`
             }
 		}
     }
-
-    
     
     p{
         font-size: 0.8rem;
         letter-spacing: 0.07rem;
+    }
+
+    @media only screen and (max-width: 1180px){
+        .visualiser-conatiner{
+            .canvas-container{
+                padding: 70px 5px 5px 5px;
+            }
+        }
     }
 `;

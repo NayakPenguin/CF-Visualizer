@@ -117,4 +117,15 @@ const VisualiserConatiner = styled.div`
         font-size: 0.8rem;
         letter-spacing: 0.07rem;
     }
+
+    @media only screen and (max-width: 1180px){
+        .stats-container{
+            display: flex;
+            justify-content: space-between;
+            flex-direction: column;
+            align-items: center;
+            /* flex-wrap: wrap; */
+            width: 100%;
+        }
+    }
 `;

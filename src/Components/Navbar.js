@@ -63,4 +63,24 @@ const Container = styled.div`
             margin: 0 7.5px;
         }
     }
+
+    @media only screen and (max-width: 1180px){
+        padding: 0 20px;
+        
+        .company{
+            .company-name{
+                font-size: 1rem;
+            }
+        }
+        
+        .user{
+            .username{
+                display: none;
+            }
+    
+            .auth{
+                font-size: 0.75rem;
+            }
+        }
+    }
 `

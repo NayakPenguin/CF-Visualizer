@@ -104,6 +104,10 @@ const FeatureContainer = styled.div`
                 svg-icon{
                     font-size: 1.25rem;
                 }
+
+                @media only screen and (max-width: 1180px){
+                    display: none;
+                }
             }
         }
     }
@@ -165,5 +169,9 @@ const FeatureContainer = styled.div`
                 transform: translateY(0);
             }
         }
+    }
+
+    @media only screen and (max-width: 1180px){
+        padding: 10px;
     }
 `

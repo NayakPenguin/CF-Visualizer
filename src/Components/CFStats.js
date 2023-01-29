@@ -193,13 +193,9 @@ const CFStats = () => {
 
     return (
         <Container>
-            <div className="feature-title">Current Codeforces Statistics</div>
+            <div className="feature-title">Codeforces Statistics</div>
             <div className="feature-desc">
-                We are analyzing the statistics of the last 30 contests, including the
-                average level of questions. We plan to also add a count of the levels,
-                so that we can provide the frequency of each level. We will consider
-                using Chart.js to display the data. Currently as a prototype we are
-                showing the DIV 2 statistics.
+                I am analyzing the statistics of the last 30 contests, including the average level of questions. I plan to also add a count of the levels, so that I can provide the frequency of each level. I will consider using Chart.js to display the data. Currently, I have removed all the content as it was looking a bit off-topic. I will also be adding question is solved by what ranks in each contest
             </div>
             <div className="feature-result">
                 {countByLevelDiv2.length != 0 ? (
@@ -263,25 +259,26 @@ const Container = styled.div`
   }
 
   .feature-desc {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 300;
     margin: 10px 0;
   }
 
   .feature-result {
+    display: none;
     margin-top: 30px;
     .all-levels {
       .one-level {
         display: flex;
         flex-wrap: wrap;
-        margin-top: 15px;
+        margin-top: 5px;
         align-items: center;
 
         .level-title {
           font-size: 0.8rem;
           padding: 7.5px 15px;
           border: 1px solid #050a30;
-          margin-right: 10px;
+          margin: 0 10px 10px 0;
           font-weight: 600;
           width: 100px;
           text-align: center;
@@ -291,7 +288,7 @@ const Container = styled.div`
         }
 
         .level-difficulty-tag {
-          margin-right: 15px;
+          margin: 0 10px 10px 0;
           padding: 7.5px 10px;
           border: 1px solid #050a30;
           font-weight: 200;
@@ -335,7 +332,7 @@ const Container = styled.div`
         }
 
         .avg-difficulty-tag {
-          margin-right: 5px;
+          margin-bottom: 10px;
           padding: 5px 10px;
           font-weight: 400;
           font-size: 0.85rem;

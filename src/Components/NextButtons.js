@@ -37,4 +37,26 @@ const Container = styled.div`
         font-size: 0.85rem;
         font-weight: 500;
     }
+
+    @media only screen and (max-width: 1180px){
+      .next-btn{
+          cursor: pointer;
+          height: 45px;
+          width: 100%;
+          margin-top: 10px;
+          border-radius: 10px;
+          border: 1.5px solid black;
+          background-color: #ffffffd4;
+          -webkit-backdrop-filter: blur(8px);
+          backdrop-filter: blur(3px);
+          filter: drop-shadow(0 25px 25px rgba(0,0,0,.15));
+
+          display: grid;
+          place-items: center;
+
+          font-size: 0.85rem;
+          font-weight: 500;
+      }
+
+    }
 `

@@ -36,11 +36,43 @@ const L15NetChange = ({ infoData }) => {
 
   // console.log(infoData);
   return (
-    <div className="stat-item">
+    <Container>
       <div className="item-left">Net Rating Change :</div>
       <div className="item-right">{value}</div>
-    </div>
+    </Container>
   )
 }
 
 export default L15NetChange
+
+
+const Container = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+  padding: 0 10px;
+  height: 45px; 
+  width: 33%;
+  border-radius: 5px;
+  margin-top: 5px;
+
+  border: 1px solid #d1d5db;
+  background-color: rgba(255, 255, 255, 0.83);
+  box-shadow: rgb(0 0 0 / 5%) 1px 1px 10px 0px;
+
+  font-size: 0.8rem;
+
+  .item-left{
+      font-weight: 500;
+  }
+
+  .item-right{
+      font-family: verdana,arial,sans-serif;
+      font-weight: 700;
+  }
+
+  @media only screen and (max-width: 1180px){
+    width: 100%;
+  }
+`
