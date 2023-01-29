@@ -10,10 +10,14 @@ import AccStats from "./AccStats";
 import LastYrProblemRating from "./LastYrProblemRating";
 
 const AccountVisual = ({ handle }) => {
-  const [data, setData] = useState(null);
-  const [infoData, setInfoData] = useState(null);
+  const [data, setData] = useState([]);
+  const [infoData, setInfoData] = useState([]);
 
   const handleSearchForProfile = () => {
+    
+  }
+
+  useEffect(() => {
     const url = "https://codeforces.com/api/user.status?handle="+handle;
         Axios.get(url)
             .then(res=>{
@@ -32,11 +36,7 @@ const AccountVisual = ({ handle }) => {
               // console.log(res.data.result)
               setInfoData(res.data.result)
             })
-  }
-
-  useEffect(() => {
-    handleSearchForProfile();
-  }, [])
+  }, [handle])
   
   
 
@@ -48,7 +48,7 @@ const AccountVisual = ({ handle }) => {
       <div className="feature-result">
         <div className="chart-container">
             {
-              data != null ? 
+              data.length > 0 ? 
               <div>
                   <TagsDonutChart userData={data} infoData={infoData} userHandle={handle}/>
                   <ProblemRating userData={data} infoData={infoData} userHandle={handle}/>

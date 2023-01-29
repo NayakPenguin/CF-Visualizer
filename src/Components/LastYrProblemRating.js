@@ -112,7 +112,7 @@ const LastYrProblemRating = ({ userData, infoData, userHandle }) => {
     
     useEffect(() => {
         filterData();
-    }, [perXDays])
+    }, [perXDays, userData])
 
     console.log(userData);
 

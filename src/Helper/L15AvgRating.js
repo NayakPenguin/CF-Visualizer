@@ -43,7 +43,7 @@ const L15AvgRating = ({ userData }) => {
             else setAvgRating(avg);
         });
 
-    }, [])
+    }, [userData])
     
 
     // console.log("Count : ", count);

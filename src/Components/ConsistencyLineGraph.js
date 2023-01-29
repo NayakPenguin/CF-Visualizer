@@ -77,7 +77,7 @@ const ProblemRating = ({ userData, infoData, userHandle }) => {
         data.datasets = [
             {
                 data: LastValues.reverse(),
-                label: "Problem Solved on Average",
+                label: "Problem Solved",
                 backgroundColor: "rgba(255,99,132,0.2)",
                 borderColor: "rgba(255,99,132,1)",
                 borderWidth: 1,
@@ -94,7 +94,7 @@ const ProblemRating = ({ userData, infoData, userHandle }) => {
     
     useEffect(() => {
         filterData();
-    }, [])
+    }, [userData]);
 
     return (
         <VisualiserConatiner>
@@ -106,6 +106,7 @@ const ProblemRating = ({ userData, infoData, userHandle }) => {
                     {
                         true ? (
                             <div className="canvas-graph">
+                                {/* <Line data={chartData} options={options} /> */}
                                 {
                                     chartData != null ? <Line data={chartData} options={options} /> : <></>
                                 }
