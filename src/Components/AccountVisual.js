@@ -9,6 +9,7 @@ import ConsistencyLineGraph from "./ConsistencyLineGraph";
 import AccStats from "./AccStats";
 import LastYrProblemRating from "./LastYrProblemRating";
 
+
 const AccountVisual = ({ handle }) => {
   const [data, setData] = useState([]);
   const [infoData, setInfoData] = useState([]);
@@ -18,6 +19,7 @@ const AccountVisual = ({ handle }) => {
   }
 
   useEffect(() => {
+    setData([]); setInfoData([]);
     const url = "https://codeforces.com/api/user.status?handle="+handle;
         Axios.get(url)
             .then(res=>{
@@ -48,7 +50,7 @@ const AccountVisual = ({ handle }) => {
       <div className="feature-result">
         <div className="chart-container">
             {
-              data.length > 0 ? 
+              data.length > 0 && infoData.length > 0 ? 
               <div>
                   <TagsDonutChart userData={data} infoData={infoData} userHandle={handle}/>
                   <ProblemRating userData={data} infoData={infoData} userHandle={handle}/>
@@ -57,7 +59,7 @@ const AccountVisual = ({ handle }) => {
                   <ConsistencyLineGraph userData={data} infoData={infoData} userHandle={handle}/>
                   <AccStats userData={data} infoData={infoData} userHandle={handle}/>
               </div> : 
-              <></>
+              <LinearProgress></LinearProgress>
             }
         </div>
       </div>
@@ -81,6 +83,7 @@ const Container = styled.div`
   .feature-title {
     font-size: 1.05rem;
     font-weight: 500;
+    margin-bottom: 15px;
 
     b{
       font-weight: 500;
