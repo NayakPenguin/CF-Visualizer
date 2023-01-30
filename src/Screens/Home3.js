@@ -7,8 +7,8 @@ import AccountVisual from '../Components/AccountVisual';
 import SendIcon from '@material-ui/icons/Send';
 import NextButtons from "../Components/NextButtons";
 
-const Home5 = () => {
-const [handle, setHandle] = useState("");
+const Home3 = () => {
+    const [handle, setHandle] = useState("");
     const [cFHandle, setCFHandle] = useState("");
     const [viewStats, setViewStats] = useState(false);
 
@@ -21,12 +21,23 @@ const [handle, setHandle] = useState("");
     return (
         <Container>
             <Navbar />
+            <input className="input" type="text" placeholder='Enter codeforces your handle to analyse - 
+                test 2' value={handle} onChange={(e) => { setHandle(e.target.value) }}/>
+                <button  onClick={() => setCFHandle(handle)}>Submit</button>
             <FeatureContainer>
                 <div className="feature-heading">Visualize your Codeforces Account</div>
+                <div className="input-container-main">
+                    <input className="input" type="text" placeholder='Enter codeforces your handle to analyse - 
+                    test 2' value={handle} onChange={(e) => { setHandle(e.target.value) }}/>
+                    <button  onClick={() => setCFHandle(handle)}>Submit</button>
+                </div>
 
-                <input className="home5-input" type="text" placeholder='Enter codeforces your handle to analyse' value={handle} onChange={(e) => { setHandle(e.target.value) }} onKeyPress={handleKeyPress} />
-                
                 <div className="feature-main">
+                    <div className="input-container-main">
+                        <div className="search-btn" onClick={() => setCFHandle(handle)}>
+                            <SendIcon />
+                        </div>
+                    </div>
                     {
                         cFHandle.length ? <AccountVisual handle={cFHandle} /> : <></>
                     }
@@ -41,7 +52,7 @@ const [handle, setHandle] = useState("");
     )
 }
 
-export default Home5
+export default Home3
 
 const Container = styled.div`
 
@@ -51,25 +62,19 @@ const FeatureContainer = styled.div`
     margin: calc(15vh + 70px) 0;
     padding: 0 15vw;
     position: relative;
-    display: flex;
-    flex-direction: column;
 
     .feature-heading{
         font-weight: 600;
         font-size: 2rem;
     }
 
-    .home5-input{
-        width: 100%;
-        min-width: 300px;
-        height: 70px;
-        padding: 20px;
-        margin: 20px 0;
-        border-radius: 10px;
-        border: 1.75px solid black;
-    }
-
-    .input-container-main{
+    .feature-main{
+        /* background-image: radial-gradient(rgb(0, 0, 0) 12.5%, transparent 12.5%);
+        background-position: -12px 0px;
+        background-size: 30px 30px;
+        margin: 15px 0;
+        padding: 10%; */
+        .input-container-main{
             position: relative;
             margin: 30px 0;
             filter: drop-shadow(0 25px 25px rgba(0,0,0,.15));
@@ -120,14 +125,6 @@ const FeatureContainer = styled.div`
                 }
             }
         }
-
-    .feature-main{
-        /* background-image: radial-gradient(rgb(0, 0, 0) 12.5%, transparent 12.5%);
-        background-position: -12px 0px;
-        background-size: 30px 30px;
-        margin: 15px 0;
-        padding: 10%; */
-        
     }
 
     .circle{

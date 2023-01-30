@@ -22,10 +22,22 @@ const [handle, setHandle] = useState("");
         <Container>
             <Navbar />
             <FeatureContainer>
-                <div className="feature-heading">Visualize your Codeforces Account</div>
+                <div className="feature-heading">Mark 5 - Visualize your Codeforces Account</div>
 
-                <input className="home5-input" type="text" placeholder='Enter codeforces your handle to analyse' value={handle} onChange={(e) => { setHandle(e.target.value) }} onKeyPress={handleKeyPress} />
+                <input className="home5-input" type="text" placeholder='Enter codeforces your handle to analyse - 1' value={handle} onChange={(e) => { setHandle(e.target.value) }} onKeyPress={handleKeyPress} />
+                <input className="home5-input" type="search" placeholder='Enter codeforces your handle to analyse - 2' value={handle} onChange={(e) => { setHandle(e.target.value) }} onKeyPress={handleKeyPress} />
+                <input type="text" placeholder='Enter codeforces your handle to analyse - 3' value={handle} onChange={(e) => { setHandle(e.target.value) }} onKeyPress={handleKeyPress} />
+                <input type="search" placeholder='Enter codeforces your handle to analyse - 4' value={handle} onChange={(e) => { setHandle(e.target.value) }} onKeyPress={handleKeyPress} />
                 
+                <div className="input-container-main">
+                    <input className="input" type="search" placeholder='Enter codeforces your handle to analyse - default - with' value={handle} onChange={(e) => { setHandle(e.target.value) }}/>
+                    <div className="search-btn" onClick={() => setCFHandle(handle)}>
+                        <SendIcon />
+                    </div>
+                </div>
+                <div className="input-container-main">
+                    <input className="input" type="search" placeholder='Enter codeforces your handle to analyse - default - without' value={handle} onChange={(e) => { setHandle(e.target.value) }}/>
+                </div>
                 <div className="feature-main">
                     {
                         cFHandle.length ? <AccountVisual handle={cFHandle} /> : <></>

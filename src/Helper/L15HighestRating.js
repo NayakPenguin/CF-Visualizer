@@ -14,6 +14,7 @@ const L15HighestRating = ({ userData }) => {
     // console.log("Date : ", currentDate);
 
     useEffect(() => {
+        let highest = 0;
         userData.forEach(function (result) {
             if (result.verdict === "OK") {
                 var date = new Date(result.creationTimeSeconds * 1000);
@@ -29,14 +30,17 @@ const L15HighestRating = ({ userData }) => {
                     day = '0' + day;
                 }
                 var submissionDate = parseInt(year)*10000 + parseInt(month)*100 + parseInt(day);
-                if (currentDate - submissionDate <= 15) {
+                
+                if (currentDate - submissionDate <= 15 && result.problem.rating != undefined) {
                     // console.log(result.problem.rating);
-                    if(result.problem.rating > maxRating){
-                        setMaxRating(result.problem.rating);
+                    // console.log(result.problem.rating);
+                    if(result.problem.rating > highest){
+                        highest = result.problem.rating;
                     }
                 }
             }
         });
+        setMaxRating(highest);
     }, [userData])
     
 

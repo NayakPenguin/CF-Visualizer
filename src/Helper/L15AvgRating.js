@@ -33,9 +33,11 @@ const L15AvgRating = ({ userData }) => {
                 if (currentDate - submissionDate <= 15 && result.problem.rating != undefined) {
                     // console.log(result.problem.rating);
                     sum += result.problem.rating;
+                    // console.log(result.problem.rating);
                     len++;
                 }
             }
+            // console.log(sum);
             let avg = sum / len;
             if(len == 0){
                 setAvgRating(0);
