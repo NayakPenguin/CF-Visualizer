@@ -8,7 +8,7 @@ import SendIcon from '@material-ui/icons/Send';
 import NextButtons from "../Components/NextButtons";
 
 const Home5 = () => {
-const [handle, setHandle] = useState("");
+    const [handle, setHandle] = useState("algo_maniac_");
     const [cFHandle, setCFHandle] = useState("");
     const [viewStats, setViewStats] = useState(false);
 
@@ -22,7 +22,7 @@ const [handle, setHandle] = useState("");
         <Container>
             <Navbar />
             <FeatureContainer>
-                <div className="feature-heading">Visualize your Codeforces Account</div>
+                <div className="feature-heading">Get Your Codeforces Report Card</div>
 
                 <input className="home5-input" type="text" placeholder='Enter codeforces your handle to analyse' value={handle} onChange={(e) => { setHandle(e.target.value) }} onKeyPress={handleKeyPress} />
                 
@@ -33,8 +33,6 @@ const [handle, setHandle] = useState("");
                     <CFStats />
                     <NextButtons />
                 </div>
-                
-
             </FeatureContainer>
             <Footer />
         </Container>

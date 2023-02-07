@@ -8,9 +8,12 @@ const Navbar = () => {
             <img className="company-logo" src="https://remoteok.com/assets/img/jobs/369fb090c5545ed67027c99378fc91671670570142.png" alt="company-logo" />
             <div className="company-name">Codeforces Visualizer</div>
         </div>
-        <div className="user">
+        {/* <div className="user">
             <div className="username">Atanu Nayak</div>
             <div className="auth">Logout</div>
+        </div> */}
+        <div className="page-views">
+            69K Views
         </div>
     </Container>
   )
@@ -62,6 +65,15 @@ const Container = styled.div`
             font-weight: 500;
             margin: 0 7.5px;
         }
+    }
+
+    .page-views{
+        font-size: 0.85rem;
+        padding: 0.45rem 1rem;
+        background-color: #0000000f;
+        /* color: white; */
+        font-weight: 500;
+        border-radius: 5px;
     }
 
     @media only screen and (max-width: 1180px){

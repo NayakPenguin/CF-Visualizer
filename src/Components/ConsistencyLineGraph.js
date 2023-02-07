@@ -5,6 +5,7 @@ import { Line } from "react-chartjs-2";
 
 const ProblemRating = ({ userData, infoData, userHandle }) => {
     const [chartData, setChartData] = useState(null);
+    const [perXDays, setPerXDays] = useState(30);
     const [lastLabels, setLastLabels] = useState();
 
     const options = {
@@ -54,7 +55,7 @@ const ProblemRating = ({ userData, infoData, userHandle }) => {
         const values = Object.values(count);
         var totalQuestions = {};
         for (let i = 0; i < keys.length; i++){
-            let pos = parseInt(keys[i] / 15);
+            let pos = parseInt(keys[i] / perXDays);
             if(totalQuestions[pos]){
                 totalQuestions[pos] += values[i];
             }
@@ -68,7 +69,7 @@ const ProblemRating = ({ userData, infoData, userHandle }) => {
         let LastXDays = [];
         for (let i = 0; i < LastKeys.length; i++){
             // console.log((parseInt(LastKeys[i]) + 1) * 15, "Days ago : ", LastValues[i]);
-            LastXDays.push((parseInt(LastKeys[i]) + 1) * 15 + " Days ago");
+            LastXDays.push((parseInt(LastKeys[i]) + 1) * perXDays + " Days");
         }
         setLastLabels(LastXDays);
 
@@ -94,14 +95,18 @@ const ProblemRating = ({ userData, infoData, userHandle }) => {
     
     useEffect(() => {
         filterData();
-    }, [userData]);
+    }, [perXDays, userData]);
 
     return (
         <VisualiserConatiner>
             <div className="visualiser-conatiner">
                 <div className="canvas-container">
                     <div className="top-label">
-                        <div className="label-item selected">Problems Solved last year per 15 days</div>
+                        <div className="label-item selected">Problems Solved Last Year</div>
+                        <div className={perXDays == 15 ? "label-item selected-item" : "label-item"} onClick={() => setPerXDays(15)}>per 15 Days</div>
+                        <div className={perXDays == 30 ? "label-item selected-item" : "label-item"} onClick={() => setPerXDays(30)}>per 30 Days</div>
+                        <div className={perXDays == 45 ? "label-item selected-item" : "label-item"} onClick={() => setPerXDays(45)}>per 45 Days</div>
+                        <div className={perXDays == 90 ? "label-item selected-item" : "label-item"} onClick={() => setPerXDays(90)}>per 90 Days</div>
                     </div>
                     {
                         true ? (
@@ -214,12 +219,24 @@ const VisualiserConatiner = styled.div`
 			.label-item{
 				padding: 5px 10px;
 				font-size: 0.7rem;
-                background-color: #050a30;
-                color: white;
+                background-color: #fff;
 				border-radius: 5px;
 				margin-right: 7.5px;
+                border: 1px solid #ffe1e6; 
 				cursor: pointer;
 			}
+            
+            .selected{
+                color: white;
+                border-color: #050a30;
+                background-color: #050a30;
+            }
+
+            .selected-item{
+                border-color: #050a30;
+                /* color: white; */
+                background-color: #ecf2f1;
+            }
 		}
     }
 

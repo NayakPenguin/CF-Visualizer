@@ -59,7 +59,7 @@ const AccountVisual = ({ handle }) => {
                   <LastYrProblemRating userData={data} infoData={infoData} userHandle={handle}/>
                   <ConsistencyLineGraph userData={data} infoData={infoData} userHandle={handle}/>
                   <AccStats userData={data} infoData={infoData} userHandle={handle}/>
-                  {/* <DivSpecificStats userData={data} infoData={infoData} userHandle={handle}/> */}
+                  <DivSpecificStats userData={data} infoData={infoData} userHandle={handle}/>
               </div> : 
               <LinearProgress></LinearProgress>
             }

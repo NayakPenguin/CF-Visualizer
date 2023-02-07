@@ -7,7 +7,7 @@ import { Line } from "react-chartjs-2";
 const LastYrProblemRating = ({ userData, infoData, userHandle }) => {
     const [chartData, setChartData] = useState(null);
     const [lastLabels, setLastLabels] = useState();
-    const [perXDays, setPerXDays] = useState(90);
+    const [perXDays, setPerXDays] = useState(30);
 
     const options = {
         legend: {
@@ -42,18 +42,18 @@ const LastYrProblemRating = ({ userData, infoData, userHandle }) => {
                 // console.log(currentDate - submissionDate);
 
                 const diff = currentDate - submissionDate;
-                if(result.problem.rating != undefined){
-                // if(diff <= 355 && result.problem.rating != undefined){
+                // if(result.problem.rating != undefined){
+                if(diff <= 355 && result.problem.rating != undefined){
                     if(sum[diff]){
                         sum[diff] += result.problem.rating;
                     }
                     else {sum[diff] = result.problem.rating;}
 
-                    const diffPer15Days = parseInt(diff / perXDays);
-                    if(count[diffPer15Days]){
-                        count[diffPer15Days] += 1;
+                    const diffPerXDays = parseInt(diff / perXDays);
+                    if(count[diffPerXDays]){
+                        count[diffPerXDays] += 1;
                     }
-                    else {count[diffPer15Days] = 1;}
+                    else {count[diffPerXDays] = 1;}
                 }
                 // console.log(year + '' + month + '' + day);
             }
@@ -86,7 +86,7 @@ const LastYrProblemRating = ({ userData, infoData, userHandle }) => {
             LastValues[i] = (LastValues[i] / SolvedDayCount[i]).toFixed(0);
             // console.log("Average : ", LastValues[i]);
             // // console.log((parseInt(LastKeys[i]) + 1) * 15, "Days ago : ", LastValues[i]);
-            LastXDays.push((parseInt(LastKeys[i]) + 1) * perXDays + " Days ago");
+            LastXDays.push((parseInt(LastKeys[i]) + 1) * perXDays + " Days");
         }
         setLastLabels(LastXDays);
 
@@ -121,8 +121,11 @@ const LastYrProblemRating = ({ userData, infoData, userHandle }) => {
             <div className="visualiser-conatiner">
                 <div className="canvas-container">
                     <div className="top-label">
-                        <div className={perXDays == 90 ? "label-item selected" : "label-item"} onClick={() => setPerXDays(90)}>Average Problem Rating per 90 Days</div>
-                        <div className={perXDays == 15 ? "label-item selected" : "label-item"} onClick={() => setPerXDays(15)}>Show per 15 Days</div>
+                        <div className="label-item selected">Avg Problem Rating Last Year</div>
+                        <div className={perXDays == 15 ? "label-item selected-item" : "label-item"} onClick={() => setPerXDays(15)}>per 15 Days</div>
+                        <div className={perXDays == 30 ? "label-item selected-item" : "label-item"} onClick={() => setPerXDays(30)}>per 30 Days</div>
+                        <div className={perXDays == 45 ? "label-item selected-item" : "label-item"} onClick={() => setPerXDays(45)}>per 45 Days</div>
+                        <div className={perXDays == 90 ? "label-item selected-item" : "label-item"} onClick={() => setPerXDays(90)}>per 90 Days</div>
                     </div>
                     {
                         true ? (
@@ -237,13 +240,20 @@ const VisualiserConatiner = styled.div`
                 background-color: #fff;
 				border-radius: 5px;
 				margin-right: 7.5px;
-                border: 1px solid #050a30; 
+                border: 1px solid #ffe1e6; 
 				cursor: pointer;
 			}
             
             .selected{
                 color: white;
+                border-color: #050a30;
                 background-color: #050a30;
+            }
+
+            .selected-item{
+                border-color: #050a30;
+                /* color: white; */
+                background-color: #ecf2f1;
             }
 		}
     }
