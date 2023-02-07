@@ -9,7 +9,7 @@ const L15VirtualContests = ({ userData }) => {
     var month = (1 + date.getMonth()).toString().padStart(2, '0');
     var day = date.getDate().toString().padStart(2, '0');
 
-    var currentDate = parseInt(year)*10000 + parseInt(month)*100 + parseInt(day);
+    var currentDate = (parseInt(year)  - 1) * 365 + (parseInt(month) - 1) * 30 + parseInt(day);
     // console.log("Date : ", currentDate);
 
     var count = 0;
@@ -28,7 +28,7 @@ const L15VirtualContests = ({ userData }) => {
             if (day < 10) {
                 day = '0' + day;
             }
-            var submissionDate = parseInt(year)*10000 + parseInt(month)*100 + parseInt(day);
+            var submissionDate =(parseInt(year)  - 1) * 365 + (parseInt(month) - 1) * 30 + parseInt(day);
             if (currentDate - submissionDate <= 15 && unique[result.contestId] == undefined) {
                 count++;
                 unique[result.contestId] = 1;

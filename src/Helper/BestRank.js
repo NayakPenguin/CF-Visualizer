@@ -4,18 +4,17 @@ import axios from "axios";
 
 const BestRank = ({ infoData }) => {
     const [rank, setRank] = useState(50000);
-    const [contestName, setContestName] = useState("---");
 
     useEffect(() => {
+        let minRank = infoData[0].rank;
         const len = infoData.length;
         for(let i = 0; i<len; i++){
-            if(infoData[i].rank < rank){
-                setRank(infoData[i].rank);
+            if(infoData[i].rank < minRank){
+                minRank = infoData[i].rank;
             }
         }
+        setRank(minRank);
     }, [infoData])
-    
-
 
     return (
         <div className="item">

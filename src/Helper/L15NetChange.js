@@ -8,7 +8,7 @@ const L15NetChange = ({ infoData }) => {
   var month = (1 + date.getMonth()).toString().padStart(2, '0');
   var day = date.getDate().toString().padStart(2, '0');
 
-  var currentDate = parseInt(year)*10000 + parseInt(month)*100 + parseInt(day);
+  var currentDate = (parseInt(year)  - 1) * 365 + (parseInt(month) - 1) * 30 + parseInt(day);
   // console.log("Current Date : ", currentDate);
 
   var value = 0;
@@ -25,7 +25,7 @@ const L15NetChange = ({ infoData }) => {
       if (day < 10) {
         day = '0' + day;
       }
-      var contestDate = parseInt(year)*10000 + parseInt(month)*100 + parseInt(day);
+      var contestDate = (parseInt(year)  - 1) * 365 + (parseInt(month) - 1) * 30 + parseInt(day);
       // console.log("Contest Date : ", contestDate);
       if (currentDate - contestDate <= 15) {
         value += result.newRating - result.oldRating;

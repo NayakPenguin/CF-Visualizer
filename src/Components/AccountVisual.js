@@ -8,6 +8,7 @@ import ProblemLevel from "./ProblemLevel";
 import ConsistencyLineGraph from "./ConsistencyLineGraph";
 import AccStats from "./AccStats";
 import LastYrProblemRating from "./LastYrProblemRating";
+import DivSpecificStats from "./DivSpecificStats";
 
 
 const AccountVisual = ({ handle }) => {
@@ -58,6 +59,7 @@ const AccountVisual = ({ handle }) => {
                   <LastYrProblemRating userData={data} infoData={infoData} userHandle={handle}/>
                   <ConsistencyLineGraph userData={data} infoData={infoData} userHandle={handle}/>
                   <AccStats userData={data} infoData={infoData} userHandle={handle}/>
+                  {/* <DivSpecificStats userData={data} infoData={infoData} userHandle={handle}/> */}
               </div> : 
               <LinearProgress></LinearProgress>
             }

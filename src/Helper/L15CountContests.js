@@ -3,16 +3,23 @@ import styled from "styled-components";
 import axios from "axios";
 
 const L15CountContests = ({ infoData }) => {
+  const [countContests, setCountContests] = useState(0);
   var date = new Date();
   var year = date.getFullYear();
   var month = (1 + date.getMonth()).toString().padStart(2, '0');
   var day = date.getDate().toString().padStart(2, '0');
 
-  var currentDate = parseInt(year)*10000 + parseInt(month)*100 + parseInt(day);
+  var currentDate = (parseInt(year)  - 1) * 365 + (parseInt(month) - 1) * 30 + parseInt(day);
   // console.log("Current Date : ", currentDate);
 
-  var count = 0;
-  infoData.forEach(function (result) {
+
+
+
+  
+
+  useEffect(() => {
+    var count = 0;
+    infoData.forEach(function (result) {
       var date = new Date(result.ratingUpdateTimeSeconds * 1000);
       var year = date.getUTCFullYear();
       var month = date.getUTCMonth();
@@ -25,20 +32,24 @@ const L15CountContests = ({ infoData }) => {
       if (day < 10) {
         day = '0' + day;
       }
-      var contestDate = parseInt(year)*10000 + parseInt(month)*100 + parseInt(day);
+      
+      var contestDate = (parseInt(year)  - 1) * 365 + (parseInt(month) - 1) * 30 + parseInt(day);
       // console.log("Contest Date : ", contestDate);
       if (currentDate - contestDate <= 15) {
         count++;
       }
-  });
+    });
+    setCountContests(count);
+  }, [infoData])
+
 
   // console.log("Count : ", count);
 
-  // console.log(infoData);
+  console.log(infoData);
   return (
     <Container>
       <div className="item-left">Number of Contests : </div>
-      <div className="item-right">{count}</div>
+      <div className="item-right">{countContests}</div>
     </Container>
   )
 }
