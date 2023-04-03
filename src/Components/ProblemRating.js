@@ -84,8 +84,7 @@ const VisualiserConatiner = styled.div`
         
         .canvas-container{
             border: 1px solid #d1d5db;
-            background-color: rgba(255, 255, 255, 0.83);
-            box-shadow: rgb(0 0 0 / 5%) 1px 1px 10px 0px;
+            background-color: rgba(255, 255, 255);
             border-radius: 10px;
             padding: 50px 150px;
             width: 100%;

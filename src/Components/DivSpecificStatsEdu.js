@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
 
-const DivSpecificStats = ({ userData, infoData, userHandle }) => {
+const DivSpecificStatsEdu = ({ userData, infoData, userHandle }) => {
     const [contestData, setContestData] = useState([]);
     const [count, setCount] = useState(0);
     const [bestRank, setBestRank] = useState(0);
@@ -33,7 +33,7 @@ const DivSpecificStats = ({ userData, infoData, userHandle }) => {
                 })
                 // console.log(this.state.error)
             });
-    }, [contestData, 5000]); 
+    }, [userHandle, 5000]);
     
     
     let contestIds = new Set();
@@ -65,7 +65,7 @@ const DivSpecificStats = ({ userData, infoData, userHandle }) => {
                 }
             }
         }
-
+ 
         // console.log(highestRating);
         setMaxSolvedinContest(max_consecutive);
         setHighestProblemRating(highestRating);
@@ -74,7 +74,7 @@ const DivSpecificStats = ({ userData, infoData, userHandle }) => {
     useEffect(() => {
         let countDivSpecContests = 0, len = contestData.length, DivSpecBestRank = 50000, netChange = 0, rankSum = 0;
         for (let i = 0; i < len; i++) {
-            if ((contestData[i].contestName).indexOf("Div. 2") != -1) {
+            if ((contestData[i].contestName).indexOf("Edu") != -1) {
                 // console.log(contestData[i]);
                 contestIds.add(contestData[i].contestId);
 
@@ -98,58 +98,53 @@ const DivSpecificStats = ({ userData, infoData, userHandle }) => {
         findAcceptedProblems();
         // console.log(contestIds);
     }, [contestData, 5000])
-
-   
-    
-
-
-
+ 
     return (
         <div>
             {
                 count != 0 ? (
-                    <VisualiserConatiner>
-                        <div className="visualiser-conatiner">
-                            <div className="canvas-container">
-                                <div className="top-label">
-                                    <div className="label-item selected">Contest Div 2 Statistics</div>
-                                </div>
-                                <div className="stats-container">
-                                    <StatContainer>
-                                        <div className="item-left">Number of Contests : </div>
-                                        <div className="item-right">{count}</div>
-                                    </StatContainer>
-                                    <StatContainer>
-                                        <div className="item-left">Max Solved in Contest : </div>
-                                        <div className="item-right">{maxSolvedinContest}</div>
-                                    </StatContainer>
-                                    <StatContainer>
-                                        <div className="item-left">Highest Rating Solved : </div>
-                                        <div className="item-right">{highestProblemRating}</div>
-                                    </StatContainer>
-                                    <StatContainer>
-                                        <div className="item-left">Net Rating Change : </div>
-                                        <div className="item-right">{netRatingChange > 0 ? "+" : ""} {netRatingChange}</div>
-                                    </StatContainer>
-                                    <StatContainer>
-                                        <div className="item-left">Best Rank : </div>
-                                        <div className="item-right">{bestRank}</div>
-                                    </StatContainer>
-                                    <StatContainer>
-                                        <div className="item-left">Average Rank in Latest 5 : </div>
-                                        <div className="item-right">{averageRank.toFixed(0)}</div>
-                                    </StatContainer>
-                                </div>
+                <VisualiserConatiner> 
+                    <div className="visualiser-conatiner">
+                        <div className="canvas-container">
+                            <div className="top-label">
+                                <div className="label-item selected">Contest Educational Statistics</div>
+                            </div>
+                            <div className="stats-container">
+                                <StatContainer>
+                                    <div className="item-left">Number of Contests : </div>
+                                    <div className="item-right">{count}</div>
+                                </StatContainer>
+                                <StatContainer>
+                                    <div className="item-left">Max Solved in Contest : </div>
+                                    <div className="item-right">{maxSolvedinContest}</div>
+                                </StatContainer>
+                                <StatContainer>
+                                    <div className="item-left">Highest Rating Solved : </div>
+                                    <div className="item-right">{highestProblemRating}</div>
+                                </StatContainer>
+                                <StatContainer>
+                                    <div className="item-left">Net Rating Change : </div>
+                                    <div className="item-right">{netRatingChange > 0 ? "+" : ""} {netRatingChange}</div>
+                                </StatContainer>
+                                <StatContainer>
+                                    <div className="item-left">Best Rank : </div>
+                                    <div className="item-right">{bestRank}</div>
+                                </StatContainer>
+                                <StatContainer>
+                                    <div className="item-left">Average Rank in Latest 5 : </div>
+                                    <div className="item-right">{averageRank.toFixed(0)}</div>
+                                </StatContainer>
                             </div>
                         </div>
-                    </VisualiserConatiner>
+                    </div>
+                </VisualiserConatiner>
                 ) : (<></>)
             }
         </div>
     )
 }
 
-export default DivSpecificStats
+export default DivSpecificStatsEdu
 
 const VisualiserConatiner = styled.div`
 	margin: 10px 0 0 0;

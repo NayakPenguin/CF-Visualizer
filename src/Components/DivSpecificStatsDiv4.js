@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
 
-const DivSpecificStats = ({ userData, infoData, userHandle }) => {
+const DivSpecificStatsDiv4 = ({ userData, infoData, userHandle }) => {
     const [contestData, setContestData] = useState([]);
     const [count, setCount] = useState(0);
     const [bestRank, setBestRank] = useState(0);
@@ -33,7 +33,7 @@ const DivSpecificStats = ({ userData, infoData, userHandle }) => {
                 })
                 // console.log(this.state.error)
             });
-    }, [contestData, 5000]); 
+    }, [userHandle, 5000]);
     
     
     let contestIds = new Set();
@@ -74,7 +74,7 @@ const DivSpecificStats = ({ userData, infoData, userHandle }) => {
     useEffect(() => {
         let countDivSpecContests = 0, len = contestData.length, DivSpecBestRank = 50000, netChange = 0, rankSum = 0;
         for (let i = 0; i < len; i++) {
-            if ((contestData[i].contestName).indexOf("Div. 2") != -1) {
+            if ((contestData[i].contestName).indexOf("Div. 4") != -1) {
                 // console.log(contestData[i]);
                 contestIds.add(contestData[i].contestId);
 
@@ -99,11 +99,7 @@ const DivSpecificStats = ({ userData, infoData, userHandle }) => {
         // console.log(contestIds);
     }, [contestData, 5000])
 
-   
-    
-
-
-
+      
     return (
         <div>
             {
@@ -112,7 +108,7 @@ const DivSpecificStats = ({ userData, infoData, userHandle }) => {
                         <div className="visualiser-conatiner">
                             <div className="canvas-container">
                                 <div className="top-label">
-                                    <div className="label-item selected">Contest Div 2 Statistics</div>
+                                    <div className="label-item selected">Contest Div 4 Statistics</div>
                                 </div>
                                 <div className="stats-container">
                                     <StatContainer>
@@ -149,7 +145,7 @@ const DivSpecificStats = ({ userData, infoData, userHandle }) => {
     )
 }
 
-export default DivSpecificStats
+export default DivSpecificStatsDiv4
 
 const VisualiserConatiner = styled.div`
 	margin: 10px 0 0 0;

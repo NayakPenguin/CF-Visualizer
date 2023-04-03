@@ -6,13 +6,14 @@
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
   /* font-family: sohne-var, "Helvetica Neue", Arial, sans-serif; */
-  color: #050a30;
+  /* font-family: verdana,arial,sans-serif;; */
+  /* color: #fff; */
+  letter-spacing: 0.07rem;
 }
 
-input, textarea, select { font-family: 'Poppins', sans-serif; }
+/* input, textarea, select { font-family: 'Poppins', sans-serif; } */
 
 body{
-  background-color: #bdfff6;
   overflow-x: hidden; /* Hide horizontal scrollbar */
   font-family: 'Poppins', sans-serif;
 }
@@ -22,12 +23,19 @@ body{
 }
  
 ::-webkit-scrollbar-track {
-  background-color: #f0e9e9;
-  border-left: 1px solid #e9e5e5;
+  background-color: #000000;
+  /* border-left: 1px solid #e9e5e5; */
 }
  
 ::-webkit-scrollbar-thumb {
-  background-color: #335ddc;
+  background-color: #fefefe;
   border-radius: 100px;
 }
 
+:root {
+  --primary-color: #b9b9b9;
+  --primary-padding: 5px;
+  --primary-margin: 2.5px 7.5px;
+  --container-margin: 15px 0;
+  --primary-radius: 5px;
+}

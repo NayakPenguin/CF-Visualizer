@@ -9,9 +9,13 @@ import ConsistencyLineGraph from "./ConsistencyLineGraph";
 import AccStats from "./AccStats";
 import LastYrProblemRating from "./LastYrProblemRating";
 import DivSpecificStats from "./DivSpecificStats";
+import DivSpecificStatsDiv1 from "./DivSpecificStatsDiv1";
+import DivSpecificStatsDiv3 from "./DivSpecificStatsDiv3";
+import DivSpecificStatsDiv4 from "./DivSpecificStatsDiv4";
+import DivSpecificStatsEdu from "./DivSpecificStatsEdu";
+ 
 
-
-const AccountVisual = ({ handle }) => {
+const AccountVisual = ({ handle }) => { 
   const [data, setData] = useState([]);
   const [infoData, setInfoData] = useState([]);
 
@@ -41,25 +45,23 @@ const AccountVisual = ({ handle }) => {
             })
   }, [handle])
   
-  
-
   return (
     <Container>
-      <div className="feature-title">Visual overview of <b>{handle}</b></div>
+      {/* <div className="feature-title">Visual overview of <b>{handle}</b></div> */}
       {/* <div className="feature-desc">
             </div> */}
       <div className="feature-result">
         <div className="chart-container">
             {
-              data.length > 0 && infoData.length > 0 ? 
+              data.length > 0 && infoData.length > 0 && handle.length > 0 ? 
               <div>
                   <TagsDonutChart userData={data} infoData={infoData} userHandle={handle}/>
                   <ProblemRating userData={data} infoData={infoData} userHandle={handle}/>
-                  <ProblemLevel userData={data} infoData={infoData} userHandle={handle}/>
-                  <LastYrProblemRating userData={data} infoData={infoData} userHandle={handle}/>
-                  <ConsistencyLineGraph userData={data} infoData={infoData} userHandle={handle}/>
-                  <AccStats userData={data} infoData={infoData} userHandle={handle}/>
+                  <DivSpecificStatsDiv1 userData={data} infoData={infoData} userHandle={handle}/>
                   <DivSpecificStats userData={data} infoData={infoData} userHandle={handle}/>
+                  <DivSpecificStatsDiv3 userData={data} infoData={infoData} userHandle={handle}/>
+                  <DivSpecificStatsDiv4 userData={data} infoData={infoData} userHandle={handle}/>
+                  <DivSpecificStatsEdu userData={data} infoData={infoData} userHandle={handle}/>
               </div> : 
               <LinearProgress></LinearProgress>
             }
@@ -74,13 +76,10 @@ export default AccountVisual;
 const Container = styled.div`
   width: 100%;
   border-radius: 10px;
-  border: 1.5px solid black;
-  background-color: #ffffffd4;
-  filter: drop-shadow(0 25px 25px rgba(0,0,0,.15));
-  -webkit-backdrop-filter: blur(8px);
+  /* border: 1.5px solid black; */
   backdrop-filter: blur(3px);
   padding: 20px;
-  margin: 10px 0;
+  margin: 30px 0;
 
   .feature-title {
     font-size: 1.05rem;

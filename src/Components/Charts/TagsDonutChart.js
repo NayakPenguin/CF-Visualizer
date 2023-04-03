@@ -60,7 +60,7 @@ const TagsDonutChart = ({ userData, infoData, userHandle }) => {
 		title: { text: 'Chart Title', display: true },
 		labels: sortedSolvedTopicTagsKeys.map((items) => { return (items) }),
 		datasets: [{
-			label: "Number of questions by Tag",
+			label: "No. of questions",
 			data: sortedSolvedTopicTagsValues.map((items) => { return (items) }),
 			backgroundColor: colors,
 			borderColor: borderColors,
@@ -124,6 +124,7 @@ export default TagsDonutChart
 
 const VisualiserConatiner = styled.div`
 	margin: 10px 0 0 0;
+    color: #222;
     
     .visualiser-conatiner{
         display: flex;
@@ -132,7 +133,7 @@ const VisualiserConatiner = styled.div`
         
         .canvas-container{
             border: 1px solid #d1d5db;
-            background-color: rgba(255, 255, 255, 0.83);
+            background-color: #fff;
             box-shadow: rgb(0 0 0 / 5%) 1px 1px 10px 0px;
             border-radius: 10px;
             padding: 50px 10px 10px 50px;
@@ -194,12 +195,14 @@ const VisualiserConatiner = styled.div`
                         font-size: 0.7rem;
                         font-weight: 500;
                         margin-right: 5px;
+                        color: #222;
                     }
     
                     .label-value{
                         font-size: 0.8rem;
                         letter-spacing: 0.07rem;
                         font-weight: 300;
+                        color: #222;
                         font-family: verdana,arial,sans-serif;
                     }
                 }
@@ -211,7 +214,7 @@ const VisualiserConatiner = styled.div`
             padding: 50px 10px 10px 10px;
             margin-left: 7.5px;
             border: 1px solid #d1d5db;
-            background-color: rgba(255, 255, 255, 0.83);
+            background-color: rgba(255, 255, 255);
             box-shadow: rgb(0 0 0 / 5%) 1px 1px 10px 0px;
             border-radius: 10px;
 			position: relative;
